@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click Speed Tester 🚀</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #1a1a1a;
+      color: white;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    #click-area {
+      background: #4CAF50;
+      padding: 4rem 8rem;
+      border-radius: 15px;
+      cursor: pointer;
+      font-size: 2rem;
+      margin: 2rem;
+      transition: transform 0.1s;
+    }
+
+    #click-area:active {
+      transform: scale(0.95);
+    }
+
+    #timer, #score {
+      font-size: 3rem;
+      margin: 1rem;
+    }
+
+    #message {
+      font-size: 1.5rem;
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click Speed Tester 🚀</h1>
+  <div id="timer">10s</div>
+  <div id="click-area">CLICK ME AS FAST AS YOU CAN!</div>
+  <div id="score">Score: 0</div>
+  <div id="message"></div>
+
+  <script>
+    const clickArea = document.getElementById('click-area');
+    const timerDisplay = document.getElementById('timer');
+    const scoreDisplay = document.getElementById('score');
+    const messageDisplay = document.getElementById('message');
+
+    let clicks = 0;
+    let timeLeft = 10;
+    let isGameActive = false;
+
+    // Start the game when the user clicks the button
+    clickArea.addEventListener('click', () => {
+      if (!isGameActive) {
+        isGameActive = true;
+        startGame();
+      }
+      clicks++;
+      scoreDisplay.textContent = `Score: ${clicks}`;
+    });
+
+    // Game logic
+    function startGame() {
+      const timer = setInterval(() => {
+        timeLeft--;
+        timerDisplay.textContent = `${timeLeft}s`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          endGame();
+        }
+      }, 1000);
+    }
+
+    // End the game and show results
+    function endGame() {
+      const clicksPerSecond = (clicks / 10).toFixed(1);
+      let message = '';
+
+      if (clicksPerSecond >= 8) message = "Legendary! Are you a robot? 🤖";
+      else if (clicksPerSecond >= 5) message = "Amazing speed! 🔥";
+      else if (clicksPerSecond >= 3) message = "Not bad! 💪";
+      else message = "Keep practicing! 😅";
+
+      messageDisplay.textContent = `${clicksPerSecond} clicks/second. ${message}`;
+      clickArea.style.backgroundColor = "#ff4444";
+      clickArea.textContent = "Game Over! Refresh to play again.";
+      isGameActive = false;
+    }
+  </script>
+</body>
+</html>
