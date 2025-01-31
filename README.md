@@ -9,7 +9,7 @@ A fun and interactive browser-based game to test how fast you can click! Built w
 - Smooth animations and responsive design.
 
 ## 🛠️ Installation
-1. Clone the repositoryOpen index.html in your browser. No server or dependencies required!
+- Clone the repositoryOpen index.html in your browser. No server or dependencies required!
 
 ## 🕹️ How to Play
 - Click the green button as fast as you can.
